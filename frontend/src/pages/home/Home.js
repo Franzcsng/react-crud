@@ -1,11 +1,17 @@
 import './Home.scss'
 import {NavLink} from 'react-router-dom'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 import Add from './add/Add.js'
 
 const Home = () => {
 
     const [display, setDisplay] = useState('none')
+    const [data, setData] = useState()
+
+    useEffect(() => {
+
+    }, []) 
 
     return (
         <div className='home-main'>
