@@ -30,6 +30,8 @@ const Add = (props) => {
                     }}
 
                     route='/items'
+
+                    checkUpdate={props.checkUpdate}
                 />
             </div>
 

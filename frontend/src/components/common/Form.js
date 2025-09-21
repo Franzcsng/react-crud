@@ -8,13 +8,15 @@ const Form = (props) => {
     const fields = props.fields
     const route = props.route
 
+    const setUpdate = props.checkUpdate
+
     const generateFields = (fields, data, setData) => {
         return fields.map((field, index) => {
             const fieldKey = field.value
                 return (
-                    <>
+                    <div  key={index}>
                     
-                        <label key={index} htmlFor={field.name}>{field.name}</label>
+                        <label htmlFor={field.name}>{field.name}</label>
                         <input 
                             onChange={(e) => setData({...data, [fieldKey]: e.target.value})}
                             type={field.type} 
@@ -23,7 +25,7 @@ const Form = (props) => {
                             placeholder={field.placeholder}>
 
                         </input>
-                    </>
+                    </div>
                 )
             }
         )
@@ -34,6 +36,7 @@ const Form = (props) => {
         
         axios.post(`http://localhost:5000${route}`, data)
         .then((res) => {
+            setUpdate(true)
             console.log(`Successfully added the following: ${res}`)
         })
         .catch((err) => console.log(err))
