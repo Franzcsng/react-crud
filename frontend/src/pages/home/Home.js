@@ -7,11 +7,34 @@ import Add from './add/Add.js'
 const Home = () => {
 
     const [display, setDisplay] = useState('none')
+    const [update, setUpdate] = useState(true)
     const [data, setData] = useState()
 
     useEffect(() => {
+        if(update){
+            setUpdate(false)
+             axios.get('http://localhost:5000/items')
+            .then((res) => {
+                console.log(res.data)
+                setData(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+       
+    }, [update]) 
 
-    }, []) 
+    const deleteItem = (id) => {
+        axios.delete(`http://localhost:5000/items/${id}`)
+        .then((res) => {
+            setUpdate(true)
+            console.log('Succesfully delete item' + id)
+        })  
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     return (
         <div className='home-main'>
@@ -29,12 +52,30 @@ const Home = () => {
 
                 <div className='table-wrapper'>
                     <table>
-                        <tr>
-                            <th> ID </th>
-                            <th> ITEM </th>
-                            <th> PRICE </th>
-                            <th> ITEM </th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> ITEM </th>
+                                <th> PRICE </th>
+                                <th> QUANTITY </th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data && data.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.id}</td>
+                                    <td>{item.item_name}</td>
+                                    <td>{item.item_price}</td>
+                                    <td>{item.item_quantity}</td>
+                                    <td><button onClick={() => deleteItem(item.id)}>DELETE</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                        
+
+                        
+
                     </table>
                 </div>
 
@@ -43,6 +84,7 @@ const Home = () => {
             <Add
                 display={display}
                 set={setDisplay}
+                checkUpdate={setUpdate}
             />
 
         </div>
