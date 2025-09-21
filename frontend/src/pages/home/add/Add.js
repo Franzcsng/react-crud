@@ -19,10 +19,17 @@ const Add = (props) => {
 
                 <Form
                     fields={[
-                        {name: "Item", type: "text", placeholder: "Enter item name"},
-                        {name: "Price", type: "text", placeholder: "Enter price"},
-                        {name: "Quantity", type: "text", placeholder: "Enter quantity"},
+                        {name: "Item", type: "text", placeholder: "Enter item name", value: 'item_name'},
+                        {name: "Price", type: "text", placeholder: "Enter price", value: 'item_price'},
+                        {name: "Quantity", type: "text", placeholder: "Enter quantity", value: 'item_quantity'},
                     ]}
+                    data={{
+                        item_name: '',
+                        item_price: '',
+                        item_quantity: '',
+                    }}
+
+                    route='/items'
                 />
             </div>
 
