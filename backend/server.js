@@ -32,11 +32,9 @@ app.get('/items', async (req, res) => {
             if(err) {
                 console.log(err)
             }
-        console.log(rows)
         return res.json(rows)
         });
 })
-
 
 app.post('/items', async (req, res) => {
     
@@ -54,6 +52,26 @@ app.post('/items', async (req, res) => {
         return res.json()
            
         });
+})
+
+app.delete('/items/:id', async (req, res) => {
+
+    const sql = 'DELETE FROM `items` WHERE `id` =  ? ';
+    const id = req.params.id;
+
+    db.execute(sql, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+
+        return res.json({ message: 'Item deleted successfully', result });
+    })
+
 })
 
 
