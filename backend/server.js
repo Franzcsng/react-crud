@@ -24,7 +24,8 @@ app.listen(port, () => {
     console.log(`Listening on port: ${port}`)
 })
 
-app.get('/items', async (req, res) => {
+
+app.get('/items', (req, res) => {
     
     const sql = 'SELECT * FROM `items`';
    
@@ -36,7 +37,8 @@ app.get('/items', async (req, res) => {
         });
 })
 
-app.post('/items', async (req, res) => {
+
+app.post('/items', (req, res) => {
     
     const sql = 'INSERT INTO `items` (`item_name`, `item_price`, `item_quantity`) VALUES (?,?,?)';
     const values = [
@@ -54,7 +56,7 @@ app.post('/items', async (req, res) => {
         });
 })
 
-app.delete('/items/:id', async (req, res) => {
+app.delete('/items/:id', (req, res) => {
 
     const sql = 'DELETE FROM `items` WHERE `id` =  ? ';
     const id = req.params.id;
@@ -70,6 +72,32 @@ app.delete('/items/:id', async (req, res) => {
         }
 
         return res.json({ message: 'Item deleted successfully', result });
+    })
+
+})
+
+
+app.put('/items/:id', (req, res) => {
+
+    const sql = 'UPDATE `items` SET `item_name`= ?, `item_price` = ?, `item_quantity` = ?  WHERE `id` =  ? ';
+    const values = [
+        req.body.item_name,
+        req.body.item_price,
+        req.body.item_quantity,
+        req.params.id
+    ];
+
+    db.execute(sql, values, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+
+        return res.json({ message: 'Item updated successfully', result });
     })
 
 })
