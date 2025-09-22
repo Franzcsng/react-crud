@@ -22,7 +22,10 @@ const Form = (props) => {
                             type={field.type} 
                             id={field.name} 
                             name={field.name} 
-                            placeholder={field.placeholder}>
+                            placeholder={field.placeholder}
+                            value={field.itemValue && field.itemValue}>
+
+                           
 
                         </input>
                     </div>
@@ -46,7 +49,7 @@ const Form = (props) => {
         <form onSubmit={(e)=>handleSubmit(e, route)}className='form-main'>
 
             {fields && generateFields(fields, data, setData)}
-            <button type='submit'>ADD</button>
+            <button type='submit'>{props.button}</button>
 
         </form>
     )
