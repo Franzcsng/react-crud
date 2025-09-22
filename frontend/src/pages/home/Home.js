@@ -1,6 +1,7 @@
 import './Home.scss'
 import {NavLink} from 'react-router-dom'
 import {useState, useEffect} from 'react'
+import {Link} from 'react-router'
 import axios from 'axios'
 import Add from './add/Add.js'
 
@@ -65,7 +66,7 @@ const Home = () => {
                             {data && data.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.id}</td>
-                                    <td>{item.item_name}</td>
+                                    <td><Link to={`/item/${item.id}`}>{item.item_name}</Link></td>
                                     <td>{item.item_price}</td>
                                     <td>{item.item_quantity}</td>
                                     <td><button onClick={() => deleteItem(item.id)}>DELETE</button></td>
