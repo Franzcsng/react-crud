@@ -103,3 +103,17 @@ app.put('/items/:id', (req, res) => {
 })
 
 
+app.get('/item/:id', (req, res) => {
+    const sql = 'SELECT * FROM `items` WHERE `id` = ?'
+    const id = req.params.id
+
+    db.execute(sql, [id], (err, result) => {
+        if(err){
+
+        }
+
+        return res.json(result)
+
+    })
+})
+
