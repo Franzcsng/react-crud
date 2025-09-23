@@ -1,14 +1,15 @@
 import './Form.scss'
 import {useState} from 'react'
-import axios from 'axios'
+
 
 const Form = (props) => {
 
-    const [data, setData] = useState(props.data)
+    const data = props.data
+    const setData = props.setData
     const fields = props.fields
     const route = props.route
-
-    const setUpdate = props.checkUpdate
+    const handleSubmit = props.submit;
+    
 
     const generateFields = (fields, data, setData) => {
         return fields.map((field, index) => {
@@ -23,26 +24,12 @@ const Form = (props) => {
                             id={field.name} 
                             name={field.name} 
                             placeholder={field.placeholder}
-                            value={field.itemValue && field.itemValue}>
-
-                           
-
+                            value={data[fieldKey] || ''}>
                         </input>
                     </div>
                 )
             }
         )
-    }
-
-    const handleSubmit = (e, route) => {
-        e.preventDefault()
-        
-        axios.post(`http://localhost:5000${route}`, data)
-        .then((res) => {
-            setUpdate(true)
-            console.log(`Successfully added the following: ${res}`)
-        })
-        .catch((err) => console.log(err))
     }
 
     return (
