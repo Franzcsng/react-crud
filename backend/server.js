@@ -77,7 +77,7 @@ app.delete('/items/:id', (req, res) => {
 })
 
 
-app.put('/items/:id', (req, res) => {
+app.put('/item/:id', (req, res) => {
 
     const sql = 'UPDATE `items` SET `item_name`= ?, `item_price` = ?, `item_quantity` = ?  WHERE `id` =  ? ';
     const values = [
@@ -109,9 +109,8 @@ app.get('/item/:id', (req, res) => {
 
     db.execute(sql, [id], (err, result) => {
         if(err){
-
+            console.log('Error fetching item: ' + err)
         }
-
         return res.json(result)
 
     })
