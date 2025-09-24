@@ -6,14 +6,20 @@ import axios from 'axios'
 
 const Update = () => {
 
+    //Extract item ID params from page URL
     let params = useParams();
     const id = params.id;
+
+    //useState data hook to set item data after useEffect axios fetch
     const [data, setData] =  useState({})
 
+    //API data request using item ID params
     useEffect(() => {
         axios.get(`/item/${id}`)
         .then((res) => {
             console.log(res.data[0])
+
+            //Item info passed to data variable
             setData(res.data[0])
         })
         .catch((err) => console.log(err))
@@ -21,6 +27,7 @@ const Update = () => {
     }, [])
 
 
+    //Submit function with PUT API to update fetched item details 
     const handleSubmit = (e, route) => {
         e.preventDefault()
 
@@ -39,6 +46,7 @@ const Update = () => {
             <div className='update-wrapper'>
             
                 <h1>{`ITEM: ${data.item_name}, ID: ${data.id}`}</h1>
+                
                 <Form
                     fields={[
                         {name: "Item", type: "text", placeholder: "Enter item name", value: 'item_name' },
