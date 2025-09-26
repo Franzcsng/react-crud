@@ -15,7 +15,7 @@ const Update = () => {
 
     //API data request using item ID params
     useEffect(() => {
-        axios.get(`/item/${id}`)
+        axios.get(`/items/${id}`)
         .then((res) => {
             console.log(res.data[0])
 
@@ -31,7 +31,7 @@ const Update = () => {
     const handleSubmit = (e, route) => {
         e.preventDefault()
 
-        axios.put(`/item/${id}`, data)
+        axios.put(`/items/${id}`, data)
         .then((res) => {
             console.log('Item updated succesfully: ' +  res)
         })
