@@ -48,6 +48,7 @@ const Add = (props) => {
                     setData={setData}
                     submit={handleSubmit}
                     checkUpdate={props.checkUpdate}
+                    button='ADD ITEM'
                 />
             </div>
 

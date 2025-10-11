@@ -17,7 +17,7 @@ const Form = (props) => {
                 return (
                     <div  key={index}>
                     
-                        <label htmlFor={field.name}>{field.name}</label>
+                        <label htmlFor={field.name}>{field.name}</label> <br></br>
                         <input 
                             onChange={(e) => setData({...data, [fieldKey]: e.target.value})}
                             type={field.type} 
