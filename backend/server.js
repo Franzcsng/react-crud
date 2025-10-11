@@ -10,9 +10,10 @@ app.use(express.json())
 const port = 5000;
 
 const itemsRouter = require('./routes/items.js')
+const accountsRouter = require('./routes/users.js')
 
 app.use('/items', itemsRouter)
-
+app.use('/user', accountsRouter)
 
 
 app.listen(port, () => {
