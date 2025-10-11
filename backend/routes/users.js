@@ -11,11 +11,11 @@ const db = require('../config/db_con.js')
 // ) AUTO_INCREMENT = 10000;
 
 router.post('/', (req, res) => {
-    const sql = 'INSERT INTO `accounts` (`account_name`,`account_password`,`date_created`)VALUES (?, ?, ?)'
+    const sql = 'INSERT INTO `accounts` (`account_email`, `account_name`,`account_password`,`date_created`) VALUES (?, ?, ?, NOW())'
     const values = [
+        req.body.account_email,
         req.body.account_name,
         req.body.account_password,
-        req.body.account_name
     ]
 
     db.execute(sql, values, (err, result) => {
@@ -26,3 +26,6 @@ router.post('/', (req, res) => {
         }
     })
 })
+
+
+module.exports = router

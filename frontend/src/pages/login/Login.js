@@ -18,7 +18,7 @@ const UserLogin = () => {
 
                 <button>LOGIN</button>
                 <p>Don't have an account yet? <br></br>Create an account 
-                <NavLink to='/logout'>here</NavLink>
+                <NavLink to='/signup'>here</NavLink>
                 </p>
             </form>
         </diV>
