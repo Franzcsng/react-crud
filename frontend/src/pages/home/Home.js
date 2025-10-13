@@ -82,7 +82,7 @@ const Home = () => {
             <Add
                 display={display}
                 set={setDisplay}
-                checkUpdate={setUpdate}
+                checkUpdate={setUpdate} //
             />
 
         </div>

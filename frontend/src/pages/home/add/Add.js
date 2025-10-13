@@ -4,16 +4,14 @@ import {useState } from 'react'
 import axios from 'axios'
 
 const Add = (props) => {
-    let display;
-    props.display ? display = props.display : display ='none'
-    const setDisplay = props.set 
-    const setUpdate = props.checkUpdate
+    const setDisplay = props.set // Set state function passed from parent component to handle display toggle of modal
+    const setUpdate = props.checkUpdate // Set state function to toggle table state change on data submit/add
+    
     const [data, setData] = useState({
                         item_name: '',
                         item_price: '',
                         item_quantity: '',
                     })
-    
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -29,7 +27,7 @@ const Add = (props) => {
 
     return(
         <div 
-        className='add-modal' style={{display: `${display}`}} 
+        className='add-modal' style={{display: `${props.display}`}} 
         >
             
             <div className='add-body'>
@@ -47,7 +45,6 @@ const Add = (props) => {
                     data={data}
                     setData={setData}
                     submit={handleSubmit}
-                    checkUpdate={props.checkUpdate}
                     button='ADD ITEM'
                 />
             </div>
