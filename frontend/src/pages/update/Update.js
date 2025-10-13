@@ -49,9 +49,9 @@ const Update = () => {
                 
                 <Form
                     fields={[
-                        {name: "Item", type: "text", placeholder: "Enter item name", value: 'item_name' },
-                        {name: "Price", type: "text", placeholder: "Enter price", value: 'item_price' },
-                        {name: "Quantity", type: "text", placeholder: "Enter quantity", value: 'item_quantity'},
+                        {name: "item", label: "Item", type: "text", placeholder: "Enter item name", value: 'item_name' },
+                        {name: "price", label: "Price", type: "text", placeholder: "Enter price", value: 'item_price' },
+                        {name: "quantity", label: "Quantity", type: "text", placeholder: "Enter quantity", value: 'item_quantity'},
                     ]}
                     data={data}
                     setData={setData}
