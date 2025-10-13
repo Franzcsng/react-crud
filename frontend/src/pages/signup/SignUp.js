@@ -1,6 +1,7 @@
 import './SignUp.scss'
 import {NavLink} from 'react-router-dom'
 import {useState} from 'react'
+import Input from '../../components/common/input/Input.js'
 import axios from 'axios'
 
 
@@ -29,17 +30,29 @@ const SignUp = () => {
 
                 <h2>CREATE YOUR STOCKAGE ACCOUNT</h2>
 
-                <label for='name'>Account Name</label> 
-                <input name='name' id='name' placeholder='Enter account name..' 
-                onChange={(e) => {setValues({...values, account_name: e.target.value})}}></input>
+                <Input
+                    label='Account Name'
+                    name='name'
+                    type='text'
+                    placeholder='Enter account name..'
+                    setData={(e) => setValues({...values, account_name: e.target.value})}
+                />
 
-                <label for='email'>Email</label> 
-                <input type='email' name='email' id='email' placeholder='Enter your email address..'
-                onChange={(e) => {setValues({...values, account_email: e.target.value})}}></input>
+                <Input
+                    label='Email'
+                    name='email'
+                    type='email'
+                    placeholder='Enter your email address..'
+                    setData={(e) => setValues({...values, account_email: e.target.value})}
+                />
 
-                <label for='password'>Password</label> 
-                <input type='password'name='password' id='password' placeholder='Enter your password..'
-                onChange={(e) => {setValues({...values, account_password: e.target.value})}}></input>
+                <Input
+                    label='Password'
+                    name='password'
+                    type='password'
+                    placeholder='Enter your password..'
+                    setData={(e) => setValues({...values, account_password: e.target.value})}
+                />
 
                 <label for='confirmpassword'>Confirm Password</label> 
                 <input type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm password..'
