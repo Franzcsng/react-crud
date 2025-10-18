@@ -14,7 +14,7 @@ const Form = (props) => {
     
 
     const onSubmit = methods.handleSubmit(data => {
-        console.log(data)
+        console.log(data)   
     })
 
 
@@ -30,6 +30,7 @@ const Form = (props) => {
                             type={field.type}
                             placeholder={field.placeholder}
                             setData={(e) => setData({...data, [fieldKey]: e.target.value})}
+                            validation={field.validation}
                         />
                     </div>
                 )
