@@ -11,7 +11,6 @@ const Input = ({label, name, type, placeholder, setData, validation, }) => {
     const inputError =  findInputError(errors, label)
     const isInvalid = isFormValid(inputError)
 
-    console.log(Object.keys(inputError).length)
     return (
         <div className='input-main'>
             {isInvalid && (
@@ -22,12 +21,12 @@ const Input = ({label, name, type, placeholder, setData, validation, }) => {
                 type={type} 
                 name={name} 
                 id={name} 
-                placeholder={placeholder} 
-                onChange={setData}
-
-                {...register(label, validation)}
-             
-                />
+                placeholder={placeholder}  
+                {...register(
+                    label, 
+                    validation
+                )} 
+            />
 
         </div>
     )

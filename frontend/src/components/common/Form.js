@@ -8,13 +8,14 @@ const Form = (props) => {
     const data = props.data //data state variable to hold values of inputs before submit
     const setData = props.setData //set function of data state hook to set values to state variable
     const fields = props.fields //object array containing field information (type, label, name, etc.) to be passed into input component
-    const handleSubmit = props.submit; //handleSubmit function declared from parent component
+    const handleDataSubmit = props.submit; //handleSubmit function declared from parent component
     
     const methods = useForm()
     
 
-    const onSubmit = methods.handleSubmit(data => {
-        console.log(data)   
+    const onSubmit = methods.handleSubmit(data => { 
+        //console.log(data)
+        handleDataSubmit()
     })
 
 
@@ -22,6 +23,10 @@ const Form = (props) => {
     const generateFields = (fields, data, setData) => {
         return fields.map((field, index) => {
             const fieldKey = field.value
+            const val = field.validation = {
+                required: `${field.label} is required`,
+                onChange: (e) => setData({...data, [fieldKey]: e.target.value})
+            }
                 return (
                     <div  key={index}>
                         <Input
@@ -29,8 +34,7 @@ const Form = (props) => {
                             name={field.name}
                             type={field.type}
                             placeholder={field.placeholder}
-                            setData={(e) => setData({...data, [fieldKey]: e.target.value})}
-                            validation={field.validation}
+                            validation={val}
                         />
                     </div>
                 )
@@ -41,12 +45,10 @@ const Form = (props) => {
 
     return (
         <FormProvider {...methods}>
-        {/* <form onSubmit={(e)=>handleSubmit(e)} className='form-main'> */}
 
         <form onSubmit={(e)=> e.preventDefault()} className='form-main'>
 
             {fields && generateFields(fields, data, setData)}
-            {/* <button type='submit'>{props.button}</button> */}
             <button onClick={onSubmit}> {props.button}</button>
 
         </form>
