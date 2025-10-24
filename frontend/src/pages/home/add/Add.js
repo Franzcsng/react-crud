@@ -7,16 +7,15 @@ const Add = (props) => {
     const setDisplay = props.set // Set state function passed from parent component to handle display toggle of modal
     const setUpdate = props.checkUpdate // Set state function to toggle table state change on data submit/add
     
-
     // useState to store input into data variable for submission
     const [data, setData] = useState({
-                        item_name: '',
-                        item_price: '',
-                        item_quantity: '',
-                    })
+        item_name: '',
+        item_price: '',
+        item_quantity: '',
+    })
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = () => {
+        console.log(data)
         axios.post(`http://localhost:5000/items`, data)
         .then((res) => {
             setUpdate(true)
@@ -35,7 +34,7 @@ const Add = (props) => {
             placeholder: "Enter item name", 
             value: 'item_name',                    
             validation: {
-                required: `Item name is required`
+               // required: `Item name is required`
             }
         },
         {
@@ -45,7 +44,8 @@ const Add = (props) => {
             placeholder: "Enter price", 
             value: 'item_price',
             validation: {
-                required: `Price is required`
+                //required: `Price is required`
+                //onChange: setData
             }
         },
         {
@@ -55,7 +55,7 @@ const Add = (props) => {
             placeholder: "Enter quantity", 
             value: 'item_quantity',
             validation: {
-                
+                //required: `Quantity is required`
             }
         },
     ]
